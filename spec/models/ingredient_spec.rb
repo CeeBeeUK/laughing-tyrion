@@ -17,7 +17,7 @@ RSpec.describe Ingredient, type: :model do
     end
 
     context "when the name already exists" do
-      before { Ingredient.create(name:) }
+      before { described_class.create(name:) }
 
       let(:name) { "Bourbon" }
 
