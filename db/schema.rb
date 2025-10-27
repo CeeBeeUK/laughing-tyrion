@@ -42,7 +42,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_27_151614) do
     t.index ["user_id"], name: "index_credentials_on_user_id"
   end
 
-  create_table "ingredients", force: :cascade do |t|
+  create_table "ingredients", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name"
     t.datetime "updated_at", null: false
