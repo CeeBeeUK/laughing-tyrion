@@ -10,13 +10,13 @@ updates:
     timezone: Europe/London
   groups:
     rubocop:
-       patterns:
-         - "rubocop*"
+      patterns:
+        - "rubocop*"
     bundler:
       patterns:
         - "*"
-       exclude-patterns:
-         - "rubocop*"
+      exclude-patterns:
+        - "rubocop*"
   open-pull-requests-limit: 10
 - package-ecosystem: github-actions
   directory: "/"
