@@ -24,7 +24,7 @@ RSpec.describe Cocktail, type: :model do
   end
 
   describe "relations" do
-    let(:name) { "Amaretto sour"}
+    let(:name) { "Amaretto sour" }
 
     before do
       Tool.create(name: "Ice crusher")
