@@ -8,7 +8,7 @@ updates:
     interval: daily
     time: "21:00"
     timezone: Europe/London
-   groups:
+  groups:
     rubocop:
        patterns:
          - "rubocop*"
