@@ -56,46 +56,40 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    env:
+      RACK_ENV: test
+      RAILS_ENV: test
+      DATABASE_URL: "postgresql://postgres:postgres@127.0.0.1/ga-db"
+
     services:
       postgres:
-        image: postgres
+        image: postgres:17.4-alpine
         env:
+          POSTGRES_DB: ga-db
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: postgres
         ports:
           - 5432:5432
-        options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
-
-      # redis:
-      #   image: redis
-      #   ports:
-      #     - 6379:6379
-      #   options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
-      - name: Install packages
-        run: sudo apt-get update && sudo apt-get install --no-install-recommends -y build-essential git libpq-dev libyaml-dev pkg-config google-chrome-stable
-
       - name: Checkout code
         uses: actions/checkout@v5
 
-      - name: Set up Ruby
+      - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: .ruby-version
           bundler-cache: true
 
-      - name: Run tests
-        env:
-          RAILS_ENV: test
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432
-          # REDIS_URL: redis://localhost:6379/0
-        run: bin/rails db:test:prepare spec
+      - name: Setup test database
+        run: bin/rails db:prepare
 
-      - name: Keep screenshots from failed system tests
-        uses: actions/upload-artifact@v5
-        if: failure()
+      - name: Run tests
+        run: bundle exec rspec
+
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v4
         with:
-          name: screenshots
-          path: ${{ github.workspace }}/tmp/screenshots
-          if-no-files-found: ignore
+          name: coverage-report
+          path: coverage
+          retention-days: 7
