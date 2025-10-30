@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_10_27_151614) do
+ActiveRecord::Schema[8.1].define(version: 2025_10_27_155143) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pgcrypto"
@@ -22,6 +22,14 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_27_151614) do
     t.integer "rating"
     t.datetime "updated_at", null: false
     t.text "variations"
+  end
+
+  create_table "cocktails_ingredients", id: false, force: :cascade do |t|
+    t.uuid "cocktail_id", null: false
+    t.uuid "ingredient_id", null: false
+    t.string "measurement"
+    t.float "quantity"
+    t.index ["cocktail_id", "ingredient_id"], name: "index_cocktails_ingredients_on_cocktail_id_and_ingredient_id"
   end
 
   create_table "cocktails_tools", id: false, force: :cascade do |t|
