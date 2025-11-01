@@ -1,0 +1,13 @@
+
+<% content_for :title, "Editing cocktail" %>
+
+<h1>Editing cocktail</h1>
+
+<%= render "form", cocktail: @cocktail %>
+
+<br>
+
+<div>
+  <%= link_to "Show this drink", @cocktail %> |
+  <%= link_to "Back to drinks", root_path %>
+</div>

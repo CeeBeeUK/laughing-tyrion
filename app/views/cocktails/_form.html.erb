@@ -1,0 +1,61 @@
+<%= form_with(model: cocktail) do |form| %>
+  <% if cocktail.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(cocktail.errors.count, "error") %> prohibited this cocktail from being saved:</h2>
+
+      <ul>
+        <% cocktail.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.fields_for(:cocktails_ingredients) do |ci_fields| %>
+      <div>
+        <%= ci_fields.label :ingredient_id, value: "Ingredient name", style: "display: block" %>
+        <%= ci_fields.collection_select :ingredient_id, Ingredient.order(:name), :id, :name %>
+      </div>
+
+      <div>
+        <%= ci_fields.label :quantity, style: "display: block" %>
+        <%= ci_fields.number_field :quantity %>
+      </div>
+
+      <div>
+        <%= ci_fields.label :measurement, style: "display: block" %>
+        <%= ci_fields.text_field :measurement %>
+      </div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :rating, style: "display: block" %>
+    <%= form.select :rating, options_for_select(Cocktail.ratings.map { |key, value| [key.titleize, Cocktail.ratings.key(value)]}, cocktail.rating) %>
+  </div>
+
+  <div>
+    <%= form.label :tools, style: "display: block" %>
+    <%= form.collection_check_boxes :tool_ids, Tool.all, :id, :name %>
+  </div>
+
+  <div>
+    <%= form.label :notes, style: "display: block" %>
+    <%= form.text_area :notes %>
+  </div>
+
+  <div>
+    <%= form.label :variations, style: "display: block" %>
+    <%= form.text_area :variations %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
