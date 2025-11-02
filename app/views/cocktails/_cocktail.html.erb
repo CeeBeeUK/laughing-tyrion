@@ -6,8 +6,8 @@
   <% end %>
 </ul>
 
-<h2>Notes</h2>
-<p><%= @cocktail.notes.presence || "No notes recorded" %></p>
+<h2>Method</h2>
+<%= @cocktail.recipe %>
 
 <h2>Variations</h2>
 <p><%= @cocktail.variations.presence || "No variations recorded" %></p>

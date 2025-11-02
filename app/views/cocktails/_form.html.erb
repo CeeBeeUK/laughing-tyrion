@@ -35,6 +35,11 @@
     <% end %>
   </div>
 
+  <div class="field">
+    <%= form.label :recipe %>
+    <%= form.rich_textarea :recipe %>
+  </div>
+
   <div>
     <%= form.label :rating, style: "display: block" %>
     <%= form.select :rating, options_for_select(Cocktail.ratings.map { |key, value| [key.titleize, Cocktail.ratings.key(value)]}, cocktail.rating) %>
