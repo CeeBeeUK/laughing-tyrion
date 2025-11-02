@@ -32,19 +32,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_27_155143) do
     t.index ["cocktail_id", "ingredient_id"], name: "index_cocktails_ingredients_on_cocktail_id_and_ingredient_id"
   end
 
-  create_table "cocktails_tools", id: false, force: :cascade do |t|
-    t.uuid "cocktail_id", null: false
-    t.uuid "tool_id", null: false
-    t.index ["cocktail_id", "tool_id"], name: "index_cocktails_tools_on_cocktail_id_and_tool_id"
-  end
-
   create_table "ingredients", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.string "name"
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "tools", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name"
     t.datetime "updated_at", null: false

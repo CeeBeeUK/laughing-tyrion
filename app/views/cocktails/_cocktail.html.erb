@@ -6,17 +6,6 @@
   <% end %>
 </ul>
 
-<h2>Tools</h2>
-<% if @cocktail.tools.empty? %>
-  <p>No tools required</p>
-<% else %>
-  <ul>
-    <% @cocktail.tools.each do |tool| %>
-      <li><%= tool.name %></li>
-    <% end %>
-  </ul>
-<% end %>
-
 <h2>Notes</h2>
 <p><%= @cocktail.notes.presence || "No notes recorded" %></p>
 

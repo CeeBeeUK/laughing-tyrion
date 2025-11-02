@@ -35,7 +35,6 @@ private
       :rating,
       :notes,
       :variations,
-      tool_ids: [],
       cocktails_ingredients_attributes: [ [ :id, :quantity, :measurement, :ingredient_id ] ]
     ])
   end
