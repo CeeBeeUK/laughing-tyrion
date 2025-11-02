@@ -2,6 +2,8 @@ class Cocktail < ApplicationRecord
   has_many :cocktails_ingredients
   has_many :ingredients, through: :cocktails_ingredients
 
+  has_rich_text :recipe
+
   validates :name, presence: true, uniqueness: true
 
   enum :rating, { red: 0, amber: 1, green: 2 }

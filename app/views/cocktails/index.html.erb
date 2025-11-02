@@ -2,7 +2,7 @@
 
 <% @cocktails.each do |drink| %>
   <h2>
-    <%= link_to drink.name, drink %>
+    <%= link_to drink.name, drink %> <%= unicode_rating(drink.rating) %>
   </h2>
 <% end %>
 

@@ -33,6 +33,7 @@ private
     params.expect(cocktail: [
       :name,
       :rating,
+      :recipe,
       :notes,
       :variations,
       cocktails_ingredients_attributes: [ [ :id, :quantity, :measurement, :ingredient_id ] ]
