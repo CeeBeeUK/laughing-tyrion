@@ -12,13 +12,8 @@
   Ingredient.create(name:)
 end
 
-[ "Shaker", "Masher", "Ice crusher" ].each do |name|
-  Tool.create(name:)
-end
-
 [ "Whisky sour" ].each do |name|
   Cocktail.create(name:)
 end
 
 CocktailsIngredient.find_or_create_by(cocktail: Cocktail.first, ingredient: Ingredient.first, quantity: 50, measurement: "ml")
-Cocktail.first.tools << Tool.first

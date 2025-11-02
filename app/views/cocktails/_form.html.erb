@@ -41,11 +41,6 @@
   </div>
 
   <div>
-    <%= form.label :tools, style: "display: block" %>
-    <%= form.collection_check_boxes :tool_ids, Tool.all, :id, :name %>
-  </div>
-
-  <div>
     <%= form.label :notes, style: "display: block" %>
     <%= form.text_area :notes %>
   </div>
