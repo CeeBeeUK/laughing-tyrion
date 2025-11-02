@@ -9,8 +9,10 @@
 <h2>Method</h2>
 <%= @cocktail.recipe %>
 
-<h2>Variations</h2>
-<p><%= @cocktail.variations.presence || "No variations recorded" %></p>
+<% if @cocktail.variations.present? %>
+  <h2>Variations</h2>
+  <p><%= @cocktail.variations.presence || "No variations recorded" %></p>
+<% end %>
 
 <div>
   <%= link_to "Edit this drink", edit_cocktail_path(@cocktail) %> |
