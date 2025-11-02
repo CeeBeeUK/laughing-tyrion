@@ -20,5 +20,5 @@ end
   Cocktail.create(name:)
 end
 
-CocktailsIngredient.create(cocktail: Cocktail.first, ingredient: Ingredient.first, quantity: 50, measurement: "ml")
+CocktailsIngredient.find_or_create_by(cocktail: Cocktail.first, ingredient: Ingredient.first, quantity: 50, measurement: "ml")
 Cocktail.first.tools << Tool.first

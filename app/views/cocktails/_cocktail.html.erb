@@ -1,0 +1,31 @@
+<h1><%= @cocktail.name %> <%= unicode_rating(@cocktail.rating) %></h1>
+<h2>Ingredients</h2>
+<ul>
+  <% @cocktail.cocktails_ingredients.each do |component| %>
+    <li><strong><%= component.ingredient.name %></strong> - <%= component.quantity %> <%=component.measurement %></li>
+  <% end %>
+</ul>
+
+<h2>Tools</h2>
+<% if @cocktail.tools.empty? %>
+  <p>No tools required</p>
+<% else %>
+  <ul>
+    <% @cocktail.tools.each do |tool| %>
+      <li><%= tool.name %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<h2>Notes</h2>
+<p><%= @cocktail.notes.presence || "No notes recorded" %></p>
+
+<h2>Variations</h2>
+<p><%= @cocktail.variations.presence || "No variations recorded" %></p>
+
+<div>
+  <%= link_to "Edit this drink", edit_cocktail_path(@cocktail) %> |
+  <%= link_to "Back to drinks", root_path %>
+
+  <%#= button_to "Destroy this drink", @cocktail, method: :delete %>
+</div>
