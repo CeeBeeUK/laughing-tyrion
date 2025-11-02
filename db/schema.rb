@@ -24,7 +24,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_27_155143) do
     t.text "variations"
   end
 
-  create_table "cocktails_ingredients", id: false, force: :cascade do |t|
+  create_table "cocktails_ingredients", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "cocktail_id", null: false
     t.uuid "ingredient_id", null: false
     t.string "measurement"
@@ -38,18 +38,6 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_27_155143) do
     t.index ["cocktail_id", "tool_id"], name: "index_cocktails_tools_on_cocktail_id_and_tool_id"
   end
 
-  create_table "credentials", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.string "external_id"
-    t.string "nickname"
-    t.string "public_key"
-    t.bigint "sign_count"
-    t.datetime "updated_at", null: false
-    t.uuid "user_id"
-    t.index ["external_id"], name: "index_credentials_on_external_id", unique: true
-    t.index ["user_id"], name: "index_credentials_on_user_id"
-  end
-
   create_table "ingredients", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.datetime "created_at", null: false
     t.string "name"
@@ -61,14 +49,4 @@ ActiveRecord::Schema[8.1].define(version: 2025_10_27_155143) do
     t.string "name"
     t.datetime "updated_at", null: false
   end
-
-  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "username"
-    t.string "webauthn_id"
-    t.index ["username"], name: "index_users_on_username", unique: true
-  end
-
-  add_foreign_key "credentials", "users"
 end
