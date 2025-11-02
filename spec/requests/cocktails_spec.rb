@@ -76,7 +76,7 @@ RSpec.describe CocktailsController, type: :request do
 
       it "returns http unprocessable_entity status" do
         patch_request
-        expect(response).to have_http_status(:unprocessable_entity)
+        expect(response).to have_http_status(:unprocessable_content)
       end
 
       it "redirects to the show page" do
