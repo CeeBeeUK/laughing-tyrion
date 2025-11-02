@@ -7,3 +7,18 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+%w[Whisky Vodka].each do |name|
+  Ingredient.create(name:)
+end
+
+[ "Shaker", "Masher", "Ice crusher" ].each do |name|
+  Tool.create(name:)
+end
+
+[ "Whisky sour" ].each do |name|
+  Cocktail.create(name:)
+end
+
+CocktailsIngredient.create(cocktail: Cocktail.first, ingredient: Ingredient.first, quantity: 50, measurement: "ml")
+Cocktail.first.tools << Tool.first
