@@ -36,6 +36,7 @@ private
       :recipe,
       :notes,
       :variations,
+      :glass_id,
       cocktails_ingredients_attributes: [ [ :id, :quantity, :measurement, :ingredient_id ] ]
     ])
   end

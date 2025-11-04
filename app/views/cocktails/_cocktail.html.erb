@@ -9,6 +9,9 @@
 <h2>Method</h2>
 <%= @cocktail.recipe %>
 
+<h2>Accoutrement</h2>
+<p><strong>Glass</strong> <%= @cocktail.glass.present? ? @cocktail.glass.name : "No glass set" %></p>
+
 <% if @cocktail.variations.present? %>
   <h2>Variations</h2>
   <p><%= @cocktail.variations.presence || "No variations recorded" %></p>
