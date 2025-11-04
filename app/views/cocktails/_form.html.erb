@@ -54,6 +54,11 @@
   </div>
 
   <div>
+    <%= form.label :garnish, style: "display: block" %>
+    <%= form.text_area :garnish %>
+  </div>
+
+  <div>
     <%= form.label :rating, style: "display: block" %>
     <%= form.select :rating, options_for_select(Cocktail.ratings.map { |key, value| [key.titleize, Cocktail.ratings.key(value)]}, cocktail.rating) %>
   </div>
