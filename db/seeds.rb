@@ -1,19 +1,39 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+glasses = [
+  "Absinthe",
+  "Bauble",
+  "Cactus",
+  "Clay Cantaritos",
+  "Cooper Mule",
+  "Coupe",
+  "Flutes",
+  "Gin Goblet",
+  "Highball",
+  "Hot",
+  "Hurricane",
+  "Martini",
+  "Old",
+  "Sake",
+  "Saucers",
+  "Shark",
+  "Shot",
+  "Silver metal Julep",
+  "Sling (Speakeasy)",
+  "Tiki",
+  "Toucan",
+  "Tumbler",
+  "Wine"
+]
 
 %w[Whisky Vodka].each do |name|
-  Ingredient.create(name:)
+  Ingredient.find_or_create_by(name:)
+end
+
+glasses.each do |name|
+  Glass.find_or_create_by(name:)
 end
 
 [ "Whisky sour" ].each do |name|
-  Cocktail.create(name:)
+  Cocktail.find_or_create_by(name:, glass: Glass.find_by(name: "Tumbler"))
 end
 
 CocktailsIngredient.find_or_create_by(cocktail: Cocktail.first, ingredient: Ingredient.first, quantity: 50, measurement: "ml")

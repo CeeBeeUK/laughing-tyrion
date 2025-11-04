@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe CocktailsController, type: :request do
+  let(:glass) { Glass.find_or_create_by!(name: "Tumbler") }
+
   describe "GET /index" do
     it "returns http success" do
       get "/"
@@ -11,7 +13,7 @@ RSpec.describe CocktailsController, type: :request do
   describe "GET /show" do
     subject(:get_request) { get cocktail_path(cocktail) }
 
-    let(:cocktail) { Cocktail.create(name: "Gimlet") }
+    let(:cocktail) { Cocktail.create(name: "Gimlet", glass:) }
 
     it "returns http success" do
       get_request
@@ -27,7 +29,7 @@ RSpec.describe CocktailsController, type: :request do
   describe "GET /edit" do
     subject(:get_request) { get edit_cocktail_path(cocktail) }
 
-    let(:cocktail) { Cocktail.create(name: "Gimlet") }
+    let(:cocktail) { Cocktail.create(name: "Gimlet", glass:) }
 
     it "returns http success" do
       get_request
@@ -43,7 +45,7 @@ RSpec.describe CocktailsController, type: :request do
   describe "PATCH /update" do
     subject(:patch_request) { patch cocktail_path(cocktail, params:) }
 
-    let(:cocktail) { Cocktail.create(name: "Gimlet") }
+    let(:cocktail) { Cocktail.create(name: "Gimlet", glass:) }
 
     let(:params) do
       {

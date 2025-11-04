@@ -16,6 +16,7 @@
     <%= form.text_field :name %>
   </div>
 
+  <h2>Ingredients</h2>
   <div>
     <%= form.fields_for(:cocktails_ingredients) do |ci_fields| %>
       <div>
@@ -35,9 +36,16 @@
     <% end %>
   </div>
 
+  <h2>Method</h2>
   <div class="field">
     <%= form.label :recipe %>
     <%= form.rich_textarea :recipe %>
+  </div>
+
+  <h2>Accoutrement</h2>
+  <div>
+    <%= form.label :glass, style: "display: block" %>
+    <%= form.collection_select :glass_id, Glass.order(:name), :id, :name %>
   </div>
 
   <div>
