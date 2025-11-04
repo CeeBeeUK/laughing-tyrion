@@ -49,6 +49,11 @@
   </div>
 
   <div>
+    <%= form.label :ice, style: "display: block" %>
+    <%= form.collection_select :ice_id, Ice.order(:name), :id, :name, include_blank: "No ice" %>
+  </div>
+
+  <div>
     <%= form.label :rating, style: "display: block" %>
     <%= form.select :rating, options_for_select(Cocktail.ratings.map { |key, value| [key.titleize, Cocktail.ratings.key(value)]}, cocktail.rating) %>
   </div>

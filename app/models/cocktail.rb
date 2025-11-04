@@ -2,6 +2,7 @@ class Cocktail < ApplicationRecord
   has_many :cocktails_ingredients
   has_many :ingredients, through: :cocktails_ingredients
   belongs_to :glass
+  belongs_to :ice, optional: true
 
   has_rich_text :recipe
 
