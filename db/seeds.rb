@@ -24,12 +24,25 @@ glasses = [
   "Wine"
 ]
 
+ice_types = [
+  "Regular",
+  "Crushed",
+  "Cracked",
+  "Large cube",
+  "Large ball",
+  "Large speciality"
+]
+
 %w[Whisky Vodka].each do |name|
   Ingredient.find_or_create_by(name:)
 end
 
 glasses.each do |name|
   Glass.find_or_create_by(name:)
+end
+
+ice_types.each do |name|
+  Ice.find_or_create_by(name:)
 end
 
 [ "Whisky sour" ].each do |name|
