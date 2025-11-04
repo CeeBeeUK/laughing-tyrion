@@ -10,7 +10,8 @@
 <%= @cocktail.recipe %>
 
 <h2>Accoutrement</h2>
-<p><strong>Glass</strong> <%= @cocktail.glass.present? ? @cocktail.glass.name : "No glass set" %></p>
+<p><strong>Glass:</strong> <%= @cocktail.glass.name %></p>
+<p><strong>Ice:</strong> <%= @cocktail.ice.present? ? @cocktail.ice.name : "No ice" %></p>
 
 <% if @cocktail.variations.present? %>
   <h2>Variations</h2>

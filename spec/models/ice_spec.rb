@@ -11,12 +11,12 @@ RSpec.describe Ice, type: :model do
     end
 
     context "when the name is present" do
-      let(:name) { "Crushed" }
+      let(:name) { "Cracked" }
 
       it { is_expected.to be_valid }
 
       context "and the glass already exists" do
-        before { described_class.create(name:) }
+        before { described_class.find_or_create_by!(name:) }
 
         it { is_expected.to_not be_valid }
       end
