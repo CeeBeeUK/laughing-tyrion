@@ -12,6 +12,7 @@
 <h2>Accoutrement</h2>
 <p><strong>Glass:</strong> <%= @cocktail.glass.name %></p>
 <p><strong>Ice:</strong> <%= @cocktail.ice.present? ? @cocktail.ice.name : "No ice" %></p>
+<p><strong>Garnish:</strong> <%= @cocktail.garnish.presence || "No garnish" %></p>
 
 <% if @cocktail.variations.present? %>
   <h2>Variations</h2>
