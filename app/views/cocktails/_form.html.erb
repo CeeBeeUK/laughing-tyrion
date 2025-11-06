@@ -50,7 +50,14 @@
 
   <div>
     <%= form.label :ice, style: "display: block" %>
-    <%= form.collection_select :ice_id, Ice.order(:name), :id, :name, include_blank: "No ice" %>
+    <%= form.collection_select(
+          :ice_id,
+          Ice.order(:name), :id, :name,
+          { prompt: "Select ice" },
+          id: "ices-select",
+          required: true,
+          data: { controller: 'select' }
+        ) %>
   </div>
 
   <div>
