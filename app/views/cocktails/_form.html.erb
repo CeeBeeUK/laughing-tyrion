@@ -1,6 +1,6 @@
 <%= form_with(model: cocktail) do |form| %>
   <% if cocktail.errors.any? %>
-    <div style="color: red">
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(cocktail.errors.count, "error") %> prohibited this cocktail from being saved:</h2>
 
       <ul>
@@ -11,69 +11,73 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="my-5">
+    <%= form.label :name, class: "form-control font-bold w-full max-w-xs label-text", style: "display: block" %>
+    <%= form.text_field :name, class: "input input-bordered w-full max-w-xs", required: true, autofocus: true, placeholder: 'Ex: Forrest Gump' %>
   </div>
 
-  <h2>Ingredients</h2>
+  <h2 class="font-bold text-4xl">Ingredients</h2>
   <div>
     <%= form.fields_for(:cocktails_ingredients) do |ci_fields| %>
-      <div>
-        <%= ci_fields.label :ingredient_id, value: "Ingredient name", style: "display: block" %>
-        <%= ci_fields.collection_select :ingredient_id, Ingredient.order(:name), :id, :name %>
+      <div class="my-5">
+        <%= ci_fields.label :ingredient_id, class: "form-control font-bold w-full max-w-xs label-text", style: "display: block" %>
+        <%= ci_fields.collection_select :ingredient_id, Ingredient.order(:name), :id, :name, class: "input input-bordered w-full max-w-xs", required: true, autofocus: true %>
       </div>
 
-      <div>
-        <%= ci_fields.label :quantity, style: "display: block" %>
-        <%= ci_fields.number_field :quantity %>
+      <div class="my-5">
+        <%= ci_fields.label :quantity, class: "form-control font-bold w-full max-w-xs label-text", style: "display: block" %>
+        <%= ci_fields.number_field :quantity, class: "input input-bordered w-full max-w-xs", required: true, autofocus: true %>
       </div>
 
-      <div>
-        <%= ci_fields.label :measurement, style: "display: block" %>
-        <%= ci_fields.text_field :measurement %>
+      <div class="my-5">
+        <%= ci_fields.label :measurement, class: "form-control font-bold w-full max-w-xs label-text", style: "display: block" %>
+        <%= ci_fields.text_field :measurement, class: "input input-bordered w-full max-w-xs", required: true, autofocus: true, placeholder: 'Example: ml' %>
       </div>
-    <% end %>
+  <% end %>
   </div>
 
-  <h2>Method</h2>
-  <div class="field">
-    <%= form.label :recipe %>
-    <%= form.rich_textarea :recipe %>
+  <h2 class="font-bold text-4xl">Method</h2>
+  <div class="my-5">
+    <%= form.label :recipe, class: "form-control font-bold w-full max-w-xs label-text", style: "display: block" %>
+    <%= form.rich_textarea :recipe, class: "input input-bordered w-full max-w-xs", required: true, autofocus: true, placeholder: 'Ex: Forrest Gump' %>
   </div>
 
-  <h2>Accoutrement</h2>
-  <div>
-    <%= form.label :glass, style: "display: block" %>
-    <%= form.collection_select :glass_id, Glass.order(:name), :id, :name %>
+  <h2 class="font-bold text-4xl">Accoutrement</h2>
+  <div class="my-5">
+    <%= form.label :glass, class: "form-control font-bold w-full max-w-xs label-text", style: "display: block" %>
+    <%= form.collection_select :glass_id, Glass.order(:name), :id, :name, class: "input input-bordered w-full max-w-xs", required: true, autofocus: true %>
   </div>
 
-  <div>
-    <%= form.label :ice, style: "display: block" %>
-    <%= form.collection_select :ice_id, Ice.order(:name), :id, :name, include_blank: "No ice" %>
+  <div class="my-5">
+    <%= form.label :ice, class: "form-control font-bold w-full max-w-xs label-text", style: "display: block" %>
+    <%= form.collection_select :ice, Ice.order(:name), :id, :name, include_blank: "No ice", class: "input input-bordered w-full max-w-xs", autofocus: true %>
   </div>
 
-  <div>
-    <%= form.label :garnish, style: "display: block" %>
-    <%= form.text_area :garnish %>
+  <div class="my-5">
+    <%= form.label :garnish, class: "form-control font-bold w-full max-w-xs label-text", style: "display: block" %>
+    <%= form.text_area :garnish, class: "input input-bordered w-full max-w-xs", required: true, autofocus: true %>
   </div>
 
-  <div>
-    <%= form.label :rating, style: "display: block" %>
-    <%= form.select :rating, options_for_select(Cocktail.ratings.map { |key, value| [key.titleize, Cocktail.ratings.key(value)]}, cocktail.rating) %>
+  <div class="my-5">
+    <%= form.label :rating, class: "form-control font-bold w-full max-w-xs label-text", style: "display: block" %>
+    <%= form.select :rating,
+                    options_for_select(Cocktail.ratings.map { |key, value| [key.titleize, Cocktail.ratings.key(value)]}, cocktail.rating),
+                    class: "input input-bordered w-full max-w-xs",
+                    required: true,
+                    autofocus: true %>
   </div>
 
-  <div>
-    <%= form.label :notes, style: "display: block" %>
-    <%= form.text_area :notes %>
+  <div class="my-5">
+    <%= form.label :notes, class: "form-control font-bold w-full max-w-xs label-text", style: "display: block" %>
+    <%= form.text_area :notes, class: "input input-bordered w-full max-w-xs", autofocus: true %>
   </div>
 
-  <div>
-    <%= form.label :variations, style: "display: block" %>
-    <%= form.text_area :variations %>
+  <div class="my-5">
+    <%= form.label :variations, class: "form-control font-bold w-full max-w-xs label-text", style: "display: block" %>
+    <%= form.text_area :variations, class: "input input-bordered w-full max-w-xs", autofocus: true %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <div class="inline">
+    <%= form.submit class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
   </div>
 <% end %>

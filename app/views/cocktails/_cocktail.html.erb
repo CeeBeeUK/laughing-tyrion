@@ -1,27 +1,30 @@
-<h1><%= @cocktail.name %> <%= unicode_rating(@cocktail.rating) %></h1>
-<h2>Ingredients</h2>
-<ul>
-  <% @cocktail.cocktails_ingredients.each do |component| %>
-    <li><strong><%= component.ingredient.name %></strong> - <%= component.quantity %> <%=component.measurement %></li>
+<div class="mx-auto md:w-2/3 w-full">
+  <h1 class="font-bold text-5xl"><%= @cocktail.name %> <%= unicode_rating(@cocktail.rating) %></h1>
+
+  <h2 class="font-bold text-4xl">Ingredients</h2>
+  <ul>
+    <% @cocktail.cocktails_ingredients.each do |component| %>
+      <li><strong><%= component.ingredient.name %></strong> - <%= component.quantity %> <%=component.measurement %></li>
+    <% end %>
+  </ul>
+
+  <h2 class="font-bold text-4xl">Method</h2>
+  <%= @cocktail.recipe %>
+
+  <h2 class="font-bold text-4xl">Accoutrement</h2>
+  <p><strong>Glass:</strong> <%= @cocktail.glass.name %></p>
+  <p><strong>Ice:</strong> <%= @cocktail.ice.present? ? @cocktail.ice.name : "No ice" %></p>
+  <p><strong>Garnish:</strong> <%= @cocktail.garnish.presence || "No garnish" %></p>
+
+  <% if @cocktail.variations.present? %>
+    <h2 class="font-bold text-4xl">Variations</h2>
+    <p><%= @cocktail.variations.presence || "No variations recorded" %></p>
   <% end %>
-</ul>
 
-<h2>Method</h2>
-<%= @cocktail.recipe %>
+  <div class="mt-6">
+    <%= link_to "Edit this drink", edit_cocktail_path(@cocktail) %> |
+    <%= link_to "Back to drinks", root_path %>
 
-<h2>Accoutrement</h2>
-<p><strong>Glass:</strong> <%= @cocktail.glass.name %></p>
-<p><strong>Ice:</strong> <%= @cocktail.ice.present? ? @cocktail.ice.name : "No ice" %></p>
-<p><strong>Garnish:</strong> <%= @cocktail.garnish.presence || "No garnish" %></p>
-
-<% if @cocktail.variations.present? %>
-  <h2>Variations</h2>
-  <p><%= @cocktail.variations.presence || "No variations recorded" %></p>
-<% end %>
-
-<div>
-  <%= link_to "Edit this drink", edit_cocktail_path(@cocktail) %> |
-  <%= link_to "Back to drinks", root_path %>
-
-  <%#= button_to "Destroy this drink", @cocktail, method: :delete %>
+    <%#= button_to "Destroy this drink", @cocktail, method: :delete %>
+  </div>
 </div>
