@@ -17,12 +17,19 @@
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
+
+    <%# Add Tailwind CSS before your existing stylesheets %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
+
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
   <body>
-    <%= yield %>
+    <%# Add Tailwind utility classes as needed %>
+    <main class="container flex px-5 mx-auto mt-28">
+      <%= yield %>
+    </main>
   </body>
 </html>

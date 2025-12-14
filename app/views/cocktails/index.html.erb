@@ -1,9 +1,15 @@
-<h1>Cocktails</h1>
+<div class="mx-auto md:w-2/3 w-full">
+  <h1 class="font-bold text-5xl">Cocktails</h1>
+  <%#= link_to "New drink", new_drink_path %>
+  <% @cocktails.each do |drink| %>
+    <div class="bg-white dark:bg-gray-800 rounded-lg px-6 py-8 ring shadow-xl ring-gray-900/5">
+      <div>
 
-<% @cocktails.each do |drink| %>
-  <h2>
-    <%= link_to drink.name, drink %> <%= unicode_rating(drink.rating) %>
-  </h2>
-<% end %>
+          <h2 class="text-3xl font-bold">
+            <%= link_to drink.name, drink %> <%= unicode_rating(drink.rating) %>
+          </h2>
 
-<%#= link_to "New drink", new_drink_path %>
+      </div>
+    </div>
+  <% end %>
+</div>
