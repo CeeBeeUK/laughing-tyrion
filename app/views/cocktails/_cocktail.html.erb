@@ -1,24 +1,29 @@
 <div class="mx-auto md:w-2/3 w-full">
-  <h1 class="font-bold text-5xl"><%= @cocktail.name %> <%= unicode_rating(@cocktail.rating) %></h1>
+  <h1 class="font-bold text-4xl"><%= @cocktail.name %> <%= unicode_rating(@cocktail.rating) %></h1>
 
-  <h2 class="font-bold text-4xl">Ingredients</h2>
+  <h2 class="font-bold text-3xl">Ingredients</h2>
   <ul>
     <% @cocktail.cocktails_ingredients.each do |component| %>
       <li><strong><%= component.ingredient.name %></strong> - <%= component.quantity %> <%=component.measurement %></li>
     <% end %>
   </ul>
 
-  <h2 class="font-bold text-4xl">Method</h2>
+  <h2 class="font-bold text-3xl">Method</h2>
   <%= @cocktail.recipe %>
 
-  <h2 class="font-bold text-4xl">Accoutrement</h2>
+  <h2 class="font-bold text-3xl">Accoutrement</h2>
   <p><strong>Glass:</strong> <%= @cocktail.glass.name %></p>
   <p><strong>Ice:</strong> <%= @cocktail.ice.present? ? @cocktail.ice.name : "No ice" %></p>
   <p><strong>Garnish:</strong> <%= @cocktail.garnish.presence || "No garnish" %></p>
 
   <% if @cocktail.variations.present? %>
-    <h2 class="font-bold text-4xl">Variations</h2>
+    <h2 class="font-bold text-3xl">Variations</h2>
     <p><%= @cocktail.variations.presence || "No variations recorded" %></p>
+  <% end %>
+
+  <% if @cocktail.notes.present? %>
+    <h2 class="font-bold text-3xl">Notes</h2>
+    <p><%= @cocktail.notes.presence || "No notes recorded" %></p>
   <% end %>
 
   <div class="mt-6">

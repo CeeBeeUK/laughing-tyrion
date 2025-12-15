@@ -45,12 +45,27 @@
   <h2 class="font-bold text-4xl">Accoutrement</h2>
   <div class="my-5">
     <%= form.label :glass, class: "form-control font-bold w-full max-w-xs label-text", style: "display: block" %>
-    <%= form.collection_select :glass_id, Glass.order(:name), :id, :name, class: "input input-bordered w-full max-w-xs", required: true, autofocus: true %>
+    <%= form.collection_select(
+          :glass_id,
+          Glass.order(:name), :id, :name,
+          { prompt: "Select glass" },
+          id: "glass-select",
+          data: { controller: 'select' },
+          class: "input input-bordered w-full max-w-xs",
+          required: true,
+          autofocus: true) %>
   </div>
 
   <div class="my-5">
     <%= form.label :ice, class: "form-control font-bold w-full max-w-xs label-text", style: "display: block" %>
-    <%= form.collection_select :ice, Ice.order(:name), :id, :name, include_blank: "No ice", class: "input input-bordered w-full max-w-xs", autofocus: true %>
+    <%= form.collection_select(
+          :ice_id,
+          Ice.order(:name), :id, :name,
+          { prompt: "Select ice" },
+          id: "ices-select",
+          required: true,
+          data: { controller: 'select' },
+          class: "input input-bordered w-full max-w-xs") %>
   </div>
 
   <div class="my-5">
